@@ -3,11 +3,10 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
-
-# THANKS
-
-    <name>
+    Nathan Pottorff -- Developer
+    Kevin Raschke -- Developer
+    Akira Youngblood -- Developer
+    Yanyu Xiong -- Developer
 
 # TECHNOLOGY COLOPHON
 
