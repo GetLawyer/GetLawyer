@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `lawyers` (
 `address` varchar(80),
 `telephone` varchar(15),
 `email` varchar(80) NOT NULL,
-`area` vahrchar(80),
+`area` varchar(80),
 `bio` varchar(MAX),
 `city` varchar(40) NOT NULL,
 `state` char(2) NOT NULL,
