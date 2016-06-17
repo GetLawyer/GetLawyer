@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `lawyers` (
 
 CREATE TABLE IF NOT EXISTS `reviews` (
     `id`           int(1) NOT NULL auto_increment,
-    `client-id`    int(1) NOT NULL,
-    `lawyer-id`    int(1) NOT NULL,
+    `clientID`    int(1) NOT NULL,
+    `lawyerID`    int(1) NOT NULL,
     `anonymous`    binary(1) NOT NULL,
     `rating`       float NOT NULL,
     `title`        varchar(80) NOT NULL,
