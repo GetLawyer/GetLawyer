@@ -22,14 +22,15 @@ CREATE TABLE IF NOT EXISTS `lawyers` (
 `bio` varchar(8000),
 `city` varchar(40) NOT NULL,
 `state` char(2) NOT NULL,
+`license` varchar(40),
 `password` varchar(80) NOT NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `reviews` (
 `id` int(1) NOT NULL auto_increment,
-`client-id` int(1) NOT NULL,
-`lawyer-id` int(1) NOT NULL,
+`clientID` int(1) NOT NULL,
+`lawyerID` int(1) NOT NULL,
 `anonymous` binary(1) NOT NULL,
 `rating` float NOT NULL,
 `title` varchar(80) NOT NULL,
