@@ -2,14 +2,14 @@
 CREATE DATABASE IF NOT EXISTS GetLawyer;
 USE GetLawyer;
 CREATE TABLE IF NOT EXISTS `clients` (
-`id` int(1) NOT NULL auto_increment,
-`name` varchar(80) NOT NULL,
-`email` varchar(80) NOT NULL,
-`password` varchar(80) NOT NULL,
-`city` varchar(40),
-`statecode` char(2),
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+    `id`           int(1) NOT NULL auto_increment,
+    `name`         varchar(80) NOT NULL,
+    `email`        varchar(80) NOT NULL,
+    `password`     varchar(80) NOT NULL,
+    `city`         varchar(40),
+    `statecode`    char(2),
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8m4 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `lawyers` (
 `id` int(1) NOT NULL,
