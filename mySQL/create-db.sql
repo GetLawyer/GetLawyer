@@ -1,4 +1,5 @@
-# Create a database, and create the table structures for our user data
+# create-db.sql
+# Create database and table structure
 CREATE DATABASE IF NOT EXISTS GetLawyer;
 USE GetLawyer;
 CREATE TABLE IF NOT EXISTS `clients` (
@@ -29,11 +30,11 @@ CREATE TABLE IF NOT EXISTS `lawyers` (
 
 CREATE TABLE IF NOT EXISTS `reviews` (
     `id`           int(1) NOT NULL auto_increment,
-    `clientID`    int(1) NOT NULL,
-    `lawyerID`    int(1) NOT NULL,
+    `clientID`     int(1) NOT NULL,
+    `lawyerID`     int(1) NOT NULL,
     `anonymous`    binary(1) NOT NULL,
     `rating`       float NOT NULL,
     `title`        varchar(80) NOT NULL,
-    `content`      varchar(8000),
+    `content`      text,
     PRIMARY KEY(`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
