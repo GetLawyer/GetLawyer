@@ -1,4 +1,4 @@
-/*file is for creating our tables and inserting the data*/
+# Create a database, and create the table structures for our user data
 CREATE DATABASE IF NOT EXISTS GetLawyer;
 USE GetLawyer;
 CREATE TABLE IF NOT EXISTS `clients` (
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
     `city`         varchar(40),
     `statecode`    char(2),
     PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8m4 AUTO_INCREMENT=1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `lawyers` (
     `id`           int(1) NOT NULL,
@@ -18,13 +18,14 @@ CREATE TABLE IF NOT EXISTS `lawyers` (
     `address`      varchar(80),
     `telephone`    varchar(15),
     `email`        varchar(80) NOT NULL,
-    `area`         varchar(80),
+    `areas`        varchar(80),
     `bio`          text,
     `city`         varchar(40) NOT NULL,
-    `state`        char(2) NOT NULL,
+    `statecode`    char(2) NOT NULL,
+    `license`      varchar(80),
     `password`     varchar(80) NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8m4 AUTO_INCREMENT=1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `reviews` (
     `id`           int(1) NOT NULL auto_increment,
@@ -35,4 +36,4 @@ CREATE TABLE IF NOT EXISTS `reviews` (
     `title`        varchar(80) NOT NULL,
     `content`      varchar(8000),
     PRIMARY KEY(`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8m4 AUTO_INCREMENT=1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
