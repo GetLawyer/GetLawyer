@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Test</title>
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+		function getWeather(){
+		$(document).ready(function (){
+			$.ajax({
+				'url':"//api.openweathermap.org/data/2.5/weather",
+				'type':'GET',
+				'data':{'q':'Boulder,co','APPID':'f41b988ca523a508f59b8d812deecfe0'},
+				'success':function(response){
+					var text= "Temperature is: " + (response.main.temp-273.15) + " celsius";
+					text+="<br>Humidity: " + (response.main.humidity);
+					text+="<br>Wind Speed: " + (response.wind.speed);
+					$('#results').html(text);
+					
+			
+				}				
+			});
+		});
+		}
+	</script>
+	
+	</head>
+	<body>
+		<h1>Weather REST API</h1>
+		Location <input type="text" id="location" value="Boulder,CO"></input> &nbsp;
+		<input type="button" value="Check Weather" onclick="getWeather();"></input>
+		<div id="results"></div>
+	</body>
+</html>
+
+print data
+
+print '''
+<script>
+
+$( document ).ready(function() {
+'''
+for key in states_caps:
+        temp =          
+        if temp < 10:
+                print "$({0}).css('fill','blue')".format(key)
+        else if temp > 10 && temp < 30:
+                print "$({0}).css('fill','cyan')".format(key)
+        else if temp > 30 && temp < 50:
+                print "$({0}).css('fill','green')".format(key)
+        else if temp > 50 && temp < 80:
+                print "$({0}).css('fill','orange')".format(key)
+        else if temp > 80:
+                print "$({0}).css('fill','red')".format(key)
+        else print "$({0}).css('fill','grey')".format(key)
+print '''
+});
+</script>
+'''
+
