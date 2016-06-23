@@ -13,6 +13,7 @@ print '''
 </head>
 <body>
 Hello World
+<br>
 </body>
 </html>
 '''
@@ -34,9 +35,10 @@ licence = form.getvalue('license')
 password = form.getvalue('password')
 
 cur = db.cursor()
-cur.execute("INSERT INTO lawyers (name,organization,address,telephone,email,areas,bio,city,statecode,password) VALUES (%(name)s,%(organization)s,%(address)s,%(telephone)s,%(email)s,%(areas)s,%(bio)s,%(city)s,%(statecode)s),%(license)s,%(password)s") 
+cur.execute("INSERT INTO lawyers (name,organization,address,telephone,email,areas,bio,city,statecode,password) VALUES (\"%s\",\"%s\",\"%s\",\"%(s\",\"%(s\",\"%s\",\"%s\",\"%s\",\"%s\"),\"%s\",\"%s\"") 
 
 cur.execute("SELECT * FROM clients")
 for row in cur.fetchall():
-	print row[0]
+	print row
+	print "<br>"
 
