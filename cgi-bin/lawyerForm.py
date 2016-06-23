@@ -8,7 +8,13 @@ print "Content-type: text/html"
 print
 print '''
 <html>
-<title>New User</title>
+<head>
+<title>New Lawyer</title>
+</head>
+<body>
+Hello World
+</body>
+</html>
 '''
 
 
@@ -16,13 +22,19 @@ print '''
 
 form = cgi.FieldStorage()
 name = form.getvalue('name')
+organization = form.getvalue('organization')
+address = form.getvalue('address')
+telephone = form.getvalue('telephone')
 email = form.getvalue('email')
-password = form.getvalue('password')
+areas = form.getvalue('areas')
+bio = form.getvalue('bio')
 city = form.getvalue('city')
 statecode = form.getvalue('statecode')
+licence = form.getvalue('license')
+password = form.getvalue('password')
 
 cur = db.cursor()
-cur.execute("INSERT INTO clients (name,email,password,city,statecode) VALUES (%(name)s,%(email)s,%(password)s,%(city)s,%(statecode)s)") 
+cur.execute("INSERT INTO lawyers (name,organization,address,telephone,email,areas,bio,city,statecode,password) VALUES (%(name)s,%(organization)s,%(address)s,%(telephone)s,%(email)s,%(areas)s,%(bio)s,%(city)s,%(statecode)s),%(license)s,%(password)s") 
 
 cur.execute("SELECT * FROM clients")
 for row in cur.fetchall():
