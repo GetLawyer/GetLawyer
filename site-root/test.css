@@ -11,7 +11,7 @@ body {
 }
 .tabs,
 .form {
-  width: 500px;
+  width: 390px;
   opacity: 0.8;
   border-radius: 5px;
 }
@@ -22,7 +22,7 @@ body {
   color: #000;
 }
 .form {
-  height: 680px;
+  height: 300px;
   margin: 25px auto;
   background: #000;
 }
@@ -63,7 +63,7 @@ li a:link {
 .input {
   margin: 20px 0;
 }
-input.form-control {
+input.main-form {
   border: 1px solid #a0b3b0;
   display: block;
   width: 100%;
@@ -72,16 +72,6 @@ input.form-control {
   background: #000;
   font-size: 16px;
 }
-input.form-contro-1 {
-  border: 1px solid #a0b3b0;
-  display: block;
-  width: 100%;
-  height: 40px;
-  color: #fff;
-  background: #000;
-  font-size: 16px;
-}
-
 input[type="checkbox"] {
   margin-right: 5px;
   vertical-align: top;
