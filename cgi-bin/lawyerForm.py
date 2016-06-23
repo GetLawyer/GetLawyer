@@ -1,4 +1,4 @@
-#!/user/bin/env python
+#!/usr/bin/env python
 
 import MySQLdb, cgi, cgitb
 db = MySQLdb.connect( host = "localhost", user="root", passwd="root", db="GetLawyer")
