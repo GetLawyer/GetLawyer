@@ -17,18 +17,18 @@ print '''
 
 
 form = cgi.FieldStorage()
-name = form.getvalue('name')
-email = form.getvalue('email')
-password = form.getvalue('password')
-city = form.getvalue('city')
-statecode = form.getvalue('statecode')
+#find another way to get this info name = form.getvalue('clientID')
+#email = form.getvalue('lawyerID')
+#password = form.getvalue('anonymous')
+rating = form.getvalue('rating')
+title = form.getvalue('title')
+content = form.getvalue('content')
 
 print "<h2>Hello %s</h2> your from %s<br>" % (name, city)
 
 cur = db.cursor()
 insrt = db.cursor()
-#if name in ['
-insrt.execute("INSERT INTO clients (name,email,password,city,statecode) VALUES (\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")" % (name, email, password, city, statecode)) 
+insrt.execute("INSERT INTO reviews (clientID,lawyerID,anonymous,rating,title,content) VALUES (\"%s\",\"%s\",\"%s\",\"%s\",\"%s\,\"%s\")" % (client, lawyer, anonymous, rating, title, content)) 
 
 cur.execute("SELECT * FROM clients")
 for row in cur.fetchall():
@@ -39,4 +39,4 @@ for row in cur.fetchall():
 print'''
 </body>
 </html>
-'''
+'
