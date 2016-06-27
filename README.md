@@ -40,3 +40,8 @@ PDF documentation (assuming you have LaTeX and assorted tools installed):
 
     cd GetLawyer/docs
     make latexpdf
+
+Docs are output to the following paths:
+
+    docs/_build/html/index.html (HTML)
+    docs/_build/latex/GetLawyer.pdf (PDF)
