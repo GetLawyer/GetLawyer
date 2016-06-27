@@ -9,7 +9,7 @@ print
 print '''
 <html>
 <title>New User</title>
-<p> Hello World</p>
+<p>Success!</p>
 <body>
 '''
 

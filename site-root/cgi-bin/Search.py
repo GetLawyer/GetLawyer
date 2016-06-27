@@ -17,7 +17,7 @@ areas = form.getvalue('areas')
 
 cur = db.cursor()
 
-cur.execute("SELECT * FROM lawyers WHERE areas LIKE '%s'" % (areas))
+cur.execute("SELECT * FROM lawyers WHERE areas LIKE '%s'" % ("%" + areas + "%"))
 
 print "<br>"
 for row in cur.fetchall():
