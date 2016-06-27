@@ -4,6 +4,8 @@ A user-friendly attorney search engine.
 
 Powered by Bootstrap, SQL, and other aging technologies.
 
+Demonstration Video: https://youtu.be/JHXlqeFKfkc
+
 #### Build/Install instructions
 
 **Database/Website setup**
