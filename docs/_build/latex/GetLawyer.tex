@@ -151,13 +151,107 @@ Contents:
 Contents:
 \phantomsection\label{DBOps:module-DBOps}\index{DBOps (module)}
 This module provides a set of standardized database operations for GetLawyer web pages. These are called by other routines in order to populate dynamic pages or register users.
+\index{addClient() (in module DBOps)}
+
+\begin{fulllineitems}
+\phantomsection\label{DBOps:DBOps.addClient}\pysiglinewithargsret{\code{DBOps.}\bfcode{addClient}}{\emph{name}, \emph{email}, \emph{password}, \emph{city}, \emph{statecode}}{}
+returns nothing
+
+Add data in the MySQL database as a new client entry.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\textbf{\texttt{name}} (\emph{\texttt{string}}) -- client name
+
+\item {} 
+\textbf{\texttt{email}} (\emph{\texttt{string}}) -- client email
+
+\item {} 
+\textbf{\texttt{password}} (\emph{\texttt{string}}) -- client password
+
+\item {} 
+\textbf{\texttt{city}} (\emph{\texttt{string}}) -- client city
+
+\item {} 
+\textbf{\texttt{statecode}} (\emph{\texttt{string}}) -- client two-letter statecode
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\textbf{Notes}:
+Missing fields are not allowed.
+
+\end{fulllineitems}
+
+\index{addLawyer() (in module DBOps)}
+
+\begin{fulllineitems}
+\phantomsection\label{DBOps:DBOps.addLawyer}\pysiglinewithargsret{\code{DBOps.}\bfcode{addLawyer}}{\emph{name}, \emph{organization}, \emph{address}, \emph{telephone}, \emph{email}, \emph{areas}, \emph{bio}, \emph{city}, \emph{statecode}, \emph{license}, \emph{password}}{}
+returns nothing
+
+Add data in the MySQL database as a new lawyer entry.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\textbf{\texttt{name}} (\emph{\texttt{string}}) -- attorney name
+
+\item {} 
+\textbf{\texttt{organization}} (\emph{\texttt{string}}) -- attorney organization/firm
+
+\item {} 
+\textbf{\texttt{address}} (\emph{\texttt{string}}) -- attorney address
+
+\item {} 
+\textbf{\texttt{telephone}} (\emph{\texttt{string}}) -- attorney telephone number
+
+\item {} 
+\textbf{\texttt{email}} (\emph{\texttt{string}}) -- attorney email
+
+\item {} 
+\textbf{\texttt{areas}} (\emph{\texttt{string}}) -- areas of practice
+
+\item {} 
+\textbf{\texttt{bio}} (\emph{\texttt{string}}) -- short biography
+
+\item {} 
+\textbf{\texttt{license}} (\emph{\texttt{string}}) -- legal license reference
+
+\item {} 
+\textbf{\texttt{password}} (\emph{\texttt{string}}) -- attorney password
+
+\item {} 
+\textbf{\texttt{city}} (\emph{\texttt{string}}) -- attorney/firm city
+
+\item {} 
+\textbf{\texttt{statecode}} (\emph{\texttt{string}}) -- attorney two-letter statecode
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\textbf{Notes}:
+Missing fields are not allowed.
+
+\end{fulllineitems}
+
+\index{dbConnect() (in module DBOps)}
+
+\begin{fulllineitems}
+\phantomsection\label{DBOps:DBOps.dbConnect}\pysiglinewithargsret{\code{DBOps.}\bfcode{dbConnect}}{}{}
+returns database handle
+
+Connect to the database and enable CGI error handling. Used internally by the other functions.
+
+\end{fulllineitems}
+
 \index{regClient() (in module DBOps)}
 
 \begin{fulllineitems}
 \phantomsection\label{DBOps:DBOps.regClient}\pysiglinewithargsret{\code{DBOps.}\bfcode{regClient}}{}{}
 returns nothing
 
-Retrieve client registration data input via CGI fields, then add this data in the MySQL database as a new client entry.
+Retrieve client registration data input via CGI fields, then add a client
 
 \textbf{Notes}:
 At present, this function does not validate or sanitize inputs.
@@ -170,7 +264,7 @@ At present, this function does not validate or sanitize inputs.
 \phantomsection\label{DBOps:DBOps.regLawyer}\pysiglinewithargsret{\code{DBOps.}\bfcode{regLawyer}}{}{}
 returns nothing
 
-Retrieve attorney registration data input via CGI fields, then add this data in the MySQL database as a new lawyer entry.
+Retrieve attorney registration data input via CGI fields and add a lawyer.
 
 \textbf{Notes}:
 At present, this function does not validate or sanitize inputs.
@@ -180,28 +274,68 @@ At present, this function does not validate or sanitize inputs.
 \index{searchAdvanced() (in module DBOps)}
 
 \begin{fulllineitems}
-\phantomsection\label{DBOps:DBOps.searchAdvanced}\pysiglinewithargsret{\code{DBOps.}\bfcode{searchAdvanced}}{}{}
+\phantomsection\label{DBOps:DBOps.searchAdvanced}\pysiglinewithargsret{\code{DBOps.}\bfcode{searchAdvanced}}{\emph{city}, \emph{state}}{}
 returns a list of tuples or an empty list
 
 Find all attorneys matching the search criteria and return as a list of tuples. If there are no records returned, returns an empty list
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\textbf{\texttt{city}} (\emph{\texttt{string}}) -- the city to search in
+
+\item {} 
+\textbf{\texttt{state}} (\emph{\texttt{string}}) -- the two-letter statecode to search in
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\textbf{Notes}:
+For development/testing purposes, this function only checks the statecode right now
+
+\end{fulllineitems}
+
+\index{searchAdvancedPreamble() (in module DBOps)}
+
+\begin{fulllineitems}
+\phantomsection\label{DBOps:DBOps.searchAdvancedPreamble}\pysiglinewithargsret{\code{DBOps.}\bfcode{searchAdvancedPreamble}}{}{}
+returns a tuple with city and statecode
+
+Return city and statecode from a query
 
 \textbf{Notes}:
 At present, this function does not validate or sanitize inputs.
-For development/testing purposes, this function only checks the statecode right now
 
 \end{fulllineitems}
 
 \index{searchStandard() (in module DBOps)}
 
 \begin{fulllineitems}
-\phantomsection\label{DBOps:DBOps.searchStandard}\pysiglinewithargsret{\code{DBOps.}\bfcode{searchStandard}}{}{}
+\phantomsection\label{DBOps:DBOps.searchStandard}\pysiglinewithargsret{\code{DBOps.}\bfcode{searchStandard}}{\emph{areas}}{}
 returns a list of tuples or an empty list
 
-Find all attorneys matching the search criteria and return as a list of tuples. If there are no records returned, returns an empty list
+Find all attorneys matching the specified areas and return as a list of tuples. If there are no records returned, returns an empty list
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\textbf{\texttt{areas}} (\emph{\texttt{string}}) -- area keywords to search with
+
+\end{description}\end{quote}
+
+\textbf{Notes}:
+Note that the ``LIKE'' operator in MySQL may not be the appropriate method of accomplishing a keyword search.
+
+\end{fulllineitems}
+
+\index{searchStandardPreamble() (in module DBOps)}
+
+\begin{fulllineitems}
+\phantomsection\label{DBOps:DBOps.searchStandardPreamble}\pysiglinewithargsret{\code{DBOps.}\bfcode{searchStandardPreamble}}{}{}
+returns a list of areas
+
+Retrieve a list of areas from a query
 
 \textbf{Notes}:
 At present, this function does not validate or sanitize inputs.
-Note that the ``LIKE'' operator in MySQL may not be the appropriate method of accomplishing a keyword search.
 
 \end{fulllineitems}
 
