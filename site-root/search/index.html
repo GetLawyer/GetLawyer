@@ -8,13 +8,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>GetLawyer | Counsel. Fast.</title>
-    <meta name="description" content="Find an attorney fast with GetLawyer.">
+    <meta name="description" content="Find an attorney fast with GetLawyer's advanced search.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/core.css">
+
+    <style>
+        .btn-double {
+            height: 68px;
+        }
+        .form-input-second {
+            /* override addon input selector and round the corners */
+            border-top-left-radius: 4px !important;
+            border-bottom-left-radius: 4px !important;
+        }
+    </style>
 
     <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
@@ -50,36 +61,18 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
-            <h1>Need an attorney?</h1>
-            <p>We've got you covered. Tell us the flavour of law you need help with and we'll find you an attorney. <br>
-                Or try our <b><a href="search">advanced search</a></b>.</p>
+            <h2>Advanced Search</h2>
+            <p>Our advanced search allows you to pinpoint the attorney you need. Search by state, city, or even both!</p>
             <div class="input-group">
-                <form name="search" method="POST" action="/cgi-bin/Search.py">
-                <input type="text" class="form-control" name="areas" id="areas" placeholder="Try 'property law' or 'medical bills'">
-                <span class="input-group-btn">
-                    <!--<button class="btn btn-default" type="button">Go!</button>-->
-                    <input type="submit" class="btn btn-default" id="submit" value="Search">
-                </span>
+                <form name="advanced-search" method="POST" action="/cgi-bin/AdvSearch.py">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Houston" style="float: left;">
+                    <input type="text" class="form-control form-input-second" id="statecode" name="statecode" placeholder="TX" style="float: left;">
+                    <input type="submit" class="btn btn-default btn-double" id="submit" value="Search">
+                </form>
             </div>
         </div>
     </div>
-
     <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Fast Counsel</h2>
-                <p>GetLawyer is the fastest lawyer search engine in the world, and every aspect of GetLawyer is designed to help you get the attorney you need as fast as possible. We know that legal troubles can put you in a tight spot, and we do our best to make sure that your troubles are solved as quickly as possible.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Accurate Counsel</h2>
-                <p>We maintain an accurate database of legal counsel, ready at your fingertips. Our search engine provides the best result that meets your needs, and you can select from several search options to find an attorney. Whether it's a local lawyer or the best dragon litigation attorney in the world, GetLawyer finds the best lawyer for you.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Reliable Counsel</h2>
-                <p>All of GetLawyer's attorneys are vetted by GetLawyer and reviewed by our user base, so you can be sure that you are selecting a reliable lawyer that will solve your legal troubles with aplomb. When you're in bind, GetLawyer is always ready to help.</p>
-            </div>
-        </div>
         <hr>
         <footer>
             <p>&copy; GetLawyer 2016</p>
