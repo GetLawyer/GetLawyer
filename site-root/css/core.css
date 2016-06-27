@@ -23,6 +23,19 @@ body {
 div.col-md-4 {
     background-color: rgba(0,0,0,0.5);
     height: 14em;
+    color: #fff;
+}
+.container h1 {
+    color: #fff;
+}
+.container h3 {
+    color: #ccc;
+}
+.container p {
+    color: #aaa;
+}
+label {
+    color: #aaa;
 }
 
 .tabs,
