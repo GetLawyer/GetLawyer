@@ -1,5 +1,10 @@
 \indexentry{DBOps (module)|hyperpage}{3}
-\indexentry{regClient() (in module DBOps)|hyperpage}{3}
-\indexentry{regLawyer() (in module DBOps)|hyperpage}{3}
-\indexentry{searchAdvanced() (in module DBOps)|hyperpage}{3}
-\indexentry{searchStandard() (in module DBOps)|hyperpage}{3}
+\indexentry{addClient() (in module DBOps)|hyperpage}{3}
+\indexentry{addLawyer() (in module DBOps)|hyperpage}{3}
+\indexentry{dbConnect() (in module DBOps)|hyperpage}{3}
+\indexentry{regClient() (in module DBOps)|hyperpage}{4}
+\indexentry{regLawyer() (in module DBOps)|hyperpage}{4}
+\indexentry{searchAdvanced() (in module DBOps)|hyperpage}{4}
+\indexentry{searchAdvancedPreamble() (in module DBOps)|hyperpage}{4}
+\indexentry{searchStandard() (in module DBOps)|hyperpage}{4}
+\indexentry{searchStandardPreamble() (in module DBOps)|hyperpage}{4}

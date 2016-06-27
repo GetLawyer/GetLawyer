@@ -4,7 +4,18 @@ A user-friendly attorney search engine.
 
 Powered by Bootstrap, SQL, and other aging technologies.
 
-Demonstration Video: https://youtu.be/JHXlqeFKfkc
+**Demonstration Video: [GetLawyer Demo](https://youtu.be/JHXlqeFKfkc)**
+
+#### Required Information
+
+This repository contains a full website as well as database setup scripts and other miscellany. A brief guide:
+
+- `/docs` Documentation makefiles and output
+- `/mySQL` Database setup scripts
+- `/site-root` Website root
+- `/tests` Unit tests in Python
+
+For building docs and building/running website, see below.
 
 #### Build/Install instructions
 
@@ -31,7 +42,7 @@ Open `localhost:8000` in a browser to view the website.
 
 **Building docs**
 
-Python docs (server side code is Python) is managed via [Sphinx](http://www.sphinx-doc.org/).
+Python docs (server side code is Python) are managed via [Sphinx](http://www.sphinx-doc.org/).
 
 To create HTML documentation, execute the following:
 
@@ -47,3 +58,10 @@ Docs are output to the following paths:
 
     docs/_build/html/index.html (HTML)
     docs/_build/latex/GetLawyer.pdf (PDF)
+
+**Running tests**
+
+Tests are built using the Python `unittest` framework. The tests verify that the server side Python interacts correctly with the MySQL database. To run the tests, you must have already set up the database (see above).
+
+    cd GetLawyer/tests
+    python DBOpsTest.py

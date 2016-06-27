@@ -1,17 +1,25 @@
 \begin{theindex}
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
+  \bigletter A
+  \item addClient() (in module DBOps), \hyperpage{3}
+  \item addLawyer() (in module DBOps), \hyperpage{3}
+
+  \indexspace
   \bigletter D
+  \item dbConnect() (in module DBOps), \hyperpage{3}
   \item DBOps (module), \hyperpage{3}
 
   \indexspace
   \bigletter R
-  \item regClient() (in module DBOps), \hyperpage{3}
-  \item regLawyer() (in module DBOps), \hyperpage{3}
+  \item regClient() (in module DBOps), \hyperpage{4}
+  \item regLawyer() (in module DBOps), \hyperpage{4}
 
   \indexspace
   \bigletter S
-  \item searchAdvanced() (in module DBOps), \hyperpage{3}
-  \item searchStandard() (in module DBOps), \hyperpage{3}
+  \item searchAdvanced() (in module DBOps), \hyperpage{4}
+  \item searchAdvancedPreamble() (in module DBOps), \hyperpage{4}
+  \item searchStandard() (in module DBOps), \hyperpage{4}
+  \item searchStandardPreamble() (in module DBOps), \hyperpage{4}
 
 \end{theindex}

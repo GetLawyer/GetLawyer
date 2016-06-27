@@ -48,10 +48,71 @@
 </div>
 <span class="target" id="module-DBOps"></span><p>This module provides a set of standardized database operations for GetLawyer web pages. These are called by other routines in order to populate dynamic pages or register users.</p>
 <dl class="function">
+<dt id="DBOps.addClient">
+<code class="descclassname">DBOps.</code><code class="descname">addClient</code><span class="sig-paren">(</span><em>name</em>, <em>email</em>, <em>password</em>, <em>city</em>, <em>statecode</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#addClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.addClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns nothing</p>
+<p>Add data in the MySQL database as a new client entry.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; client name</li>
+<li><strong>email</strong> (<em>string</em>) &#8211; client email</li>
+<li><strong>password</strong> (<em>string</em>) &#8211; client password</li>
+<li><strong>city</strong> (<em>string</em>) &#8211; client city</li>
+<li><strong>statecode</strong> (<em>string</em>) &#8211; client two-letter statecode</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong>:
+Missing fields are not allowed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DBOps.addLawyer">
+<code class="descclassname">DBOps.</code><code class="descname">addLawyer</code><span class="sig-paren">(</span><em>name</em>, <em>organization</em>, <em>address</em>, <em>telephone</em>, <em>email</em>, <em>areas</em>, <em>bio</em>, <em>city</em>, <em>statecode</em>, <em>license</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#addLawyer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.addLawyer" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns nothing</p>
+<p>Add data in the MySQL database as a new lawyer entry.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; attorney name</li>
+<li><strong>organization</strong> (<em>string</em>) &#8211; attorney organization/firm</li>
+<li><strong>address</strong> (<em>string</em>) &#8211; attorney address</li>
+<li><strong>telephone</strong> (<em>string</em>) &#8211; attorney telephone number</li>
+<li><strong>email</strong> (<em>string</em>) &#8211; attorney email</li>
+<li><strong>areas</strong> (<em>string</em>) &#8211; areas of practice</li>
+<li><strong>bio</strong> (<em>string</em>) &#8211; short biography</li>
+<li><strong>license</strong> (<em>string</em>) &#8211; legal license reference</li>
+<li><strong>password</strong> (<em>string</em>) &#8211; attorney password</li>
+<li><strong>city</strong> (<em>string</em>) &#8211; attorney/firm city</li>
+<li><strong>statecode</strong> (<em>string</em>) &#8211; attorney two-letter statecode</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong>:
+Missing fields are not allowed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DBOps.dbConnect">
+<code class="descclassname">DBOps.</code><code class="descname">dbConnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#dbConnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.dbConnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns database handle</p>
+<p>Connect to the database and enable CGI error handling. Used internally by the other functions.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="DBOps.regClient">
 <code class="descclassname">DBOps.</code><code class="descname">regClient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#regClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.regClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns nothing</p>
-<p>Retrieve client registration data input via CGI fields, then add this data in the MySQL database as a new client entry.</p>
+<p>Retrieve client registration data input via CGI fields, then add a client</p>
 <p><strong>Notes</strong>:
 At present, this function does not validate or sanitize inputs.</p>
 </dd></dl>
@@ -60,29 +121,65 @@ At present, this function does not validate or sanitize inputs.</p>
 <dt id="DBOps.regLawyer">
 <code class="descclassname">DBOps.</code><code class="descname">regLawyer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#regLawyer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.regLawyer" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns nothing</p>
-<p>Retrieve attorney registration data input via CGI fields, then add this data in the MySQL database as a new lawyer entry.</p>
+<p>Retrieve attorney registration data input via CGI fields and add a lawyer.</p>
 <p><strong>Notes</strong>:
 At present, this function does not validate or sanitize inputs.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="DBOps.searchAdvanced">
-<code class="descclassname">DBOps.</code><code class="descname">searchAdvanced</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#searchAdvanced"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.searchAdvanced" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">DBOps.</code><code class="descname">searchAdvanced</code><span class="sig-paren">(</span><em>city</em>, <em>state</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#searchAdvanced"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.searchAdvanced" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns a list of tuples or an empty list</p>
 <p>Find all attorneys matching the search criteria and return as a list of tuples. If there are no records returned, returns an empty list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>city</strong> (<em>string</em>) &#8211; the city to search in</li>
+<li><strong>state</strong> (<em>string</em>) &#8211; the two-letter statecode to search in</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Notes</strong>:
-At present, this function does not validate or sanitize inputs.
 For development/testing purposes, this function only checks the statecode right now</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="DBOps.searchStandard">
-<code class="descclassname">DBOps.</code><code class="descname">searchStandard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#searchStandard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.searchStandard" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns a list of tuples or an empty list</p>
-<p>Find all attorneys matching the search criteria and return as a list of tuples. If there are no records returned, returns an empty list</p>
+<dt id="DBOps.searchAdvancedPreamble">
+<code class="descclassname">DBOps.</code><code class="descname">searchAdvancedPreamble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#searchAdvancedPreamble"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.searchAdvancedPreamble" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a tuple with city and statecode</p>
+<p>Return city and statecode from a query</p>
 <p><strong>Notes</strong>:
-At present, this function does not validate or sanitize inputs.
+At present, this function does not validate or sanitize inputs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DBOps.searchStandard">
+<code class="descclassname">DBOps.</code><code class="descname">searchStandard</code><span class="sig-paren">(</span><em>areas</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#searchStandard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.searchStandard" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a list of tuples or an empty list</p>
+<p>Find all attorneys matching the specified areas and return as a list of tuples. If there are no records returned, returns an empty list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>areas</strong> (<em>string</em>) &#8211; area keywords to search with</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong>:
 Note that the &#8220;LIKE&#8221; operator in MySQL may not be the appropriate method of accomplishing a keyword search.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DBOps.searchStandardPreamble">
+<code class="descclassname">DBOps.</code><code class="descname">searchStandardPreamble</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#searchStandardPreamble"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.searchStandardPreamble" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a list of areas</p>
+<p>Retrieve a list of areas from a query</p>
+<p><strong>Notes</strong>:
+At present, this function does not validate or sanitize inputs.</p>
 </dd></dl>
 
 </div>
