@@ -31,14 +31,9 @@ areas = form.getvalue('areas')
 bio = form.getvalue('bio')
 city = form.getvalue('city')
 statecode = form.getvalue('statecode')
-licence = form.getvalue('license')
+license = form.getvalue('license')
 password = form.getvalue('password')
 
 cur = db.cursor()
-cur.execute("INSERT INTO lawyers (name,organization,address,telephone,email,areas,bio,city,statecode,password) VALUES (\"%s\",\"%s\",\"%s\",\"%(s\",\"%(s\",\"%s\",\"%s\",\"%s\",\"%s\"),\"%s\",\"%s\"") 
-
-cur.execute("SELECT * FROM clients")
-for row in cur.fetchall():
-	print row
-	print "<br>"
+cur.execute("INSERT INTO lawyers (name,organization,address,telephone,email,areas,bio,city,statecode,license,password) VALUES (\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")" % (name, organization, address, telephone, email, areas, bio, city, statecode, license, password)) 
 

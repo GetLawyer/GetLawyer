@@ -15,7 +15,7 @@ print '''
 
 
 
-
+#Read and get the user input from form
 form = cgi.FieldStorage()
 name = form.getvalue('name')
 email = form.getvalue('email')
@@ -27,14 +27,7 @@ print "<h2>Hello %s</h2> your from %s<br>" % (name, city)
 
 cur = db.cursor()
 insrt = db.cursor()
-#if name in ['
 insrt.execute("INSERT INTO clients (name,email,password,city,statecode) VALUES (\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")" % (name, email, password, city, statecode)) 
-
-cur.execute("SELECT * FROM clients")
-for row in cur.fetchall():
-	print row
-	print "<br>"
-
 
 print'''
 </body>

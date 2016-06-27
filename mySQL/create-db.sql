@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `lawyers` (
-    `id`           int(1) NOT NULL,
+    `id`           int(1) NOT NULL auto_increment,
     `name`         varchar(80) NOT NULL,
     `organization` varchar(80),
     `address`      varchar(80),
