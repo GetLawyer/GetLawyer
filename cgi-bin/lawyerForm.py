@@ -1,4 +1,4 @@
-#!/user/bin/env python
+#!/usr/bin/env python
 
 import MySQLdb, cgi, cgitb
 db = MySQLdb.connect( host = "localhost", user="root", passwd="root", db="GetLawyer")
@@ -13,6 +13,7 @@ print '''
 </head>
 <body>
 Hello World
+<br>
 </body>
 </html>
 '''
@@ -30,13 +31,9 @@ areas = form.getvalue('areas')
 bio = form.getvalue('bio')
 city = form.getvalue('city')
 statecode = form.getvalue('statecode')
-licence = form.getvalue('license')
+license = form.getvalue('license')
 password = form.getvalue('password')
 
 cur = db.cursor()
-cur.execute("INSERT INTO lawyers (name,organization,address,telephone,email,areas,bio,city,statecode,password) VALUES (%(name)s,%(organization)s,%(address)s,%(telephone)s,%(email)s,%(areas)s,%(bio)s,%(city)s,%(statecode)s),%(license)s,%(password)s") 
-
-cur.execute("SELECT * FROM clients")
-for row in cur.fetchall():
-	print row[0]
+cur.execute("INSERT INTO lawyers (name,organization,address,telephone,email,areas,bio,city,statecode,license,password) VALUES (\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")" % (name, organization, address, telephone, email, areas, bio, city, statecode, license, password)) 
 
