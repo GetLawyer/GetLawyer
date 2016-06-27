@@ -16,26 +16,39 @@ class DBOpsTest(unittest.TestCase):
     def test_searchStandard(self):
         areas = 'debt'
         lawyers = DBOps.searchStandard(areas)
-        print lawyers
-        self.assertEquals(len(lawyers) > 0,'Standard search failed to return any results')
+        # print lawyers
+        self.assertTrue(len(lawyers) > 0,'Standard search failed to return any results')
 
     def test_searchAdvanced(self):
         city = 'New York'
         state = 'NY'
         lawyers = DBOps.searchAdvanced(city,state)
-        print lawyers
-        self.assertEquals(len(lawyers) > 0,'Advanced search failed to return any results')
+        # print lawyers
+        self.assertTrue(len(lawyers) > 0,'Advanced search failed to return any results')
 
     def test_addClient(self):
-        db = dbConnect()
+        db = DBOps.dbConnect()
         count = db.cursor()
-        oldCount = count.execute('SELECT COUNT(*) FROM lawyers')
-        print oldCount
-        addClient('Foo Bar','test@example.com','password','Los Angeles','CA')
-        newCount = count.execute('SELECT COUNT(*) FROM lawyers')
-        print newCount
-        self.assertEquals(1==1,'Adding a client failed to modify database')
+        count.execute('SELECT * FROM clients')
+        oldCount = len(count.fetchall())
+        # print oldCount
+        DBOps.addClient('Foo Bar','test@example.com','password','Los Angeles','CA')
+        count.execute('SELECT * FROM clients')
+        newCount = len(count.fetchall())
+        # print newCount
+        self.assertTrue(newCount == (oldCount + 1),'Adding a client failed to modify database')
 
+    def test_addLawyer(self):
+        db = DBOps.dbConnect()
+        count = db.cursor()
+        count.execute('SELECT * FROM lawyers')
+        oldCount = len(count.fetchall())
+        # print oldCount
+        DBOps.addLawyer('Foo Bar','Qux Legal','404 Baz St','404 404 8080','bar@example.com','debt, injury, Metasyntactic variables','','Seattle','AK','Unlicensed','password')
+        count.execute('SELECT * FROM lawyers')
+        newCount = len(count.fetchall())
+        # print newCount
+        self.assertTrue(newCount == (oldCount + 1),'Adding a lawyer failed to modify database')
 
 if __name__ == "__main__":
     unittest.main()
