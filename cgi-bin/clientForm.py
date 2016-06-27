@@ -23,9 +23,7 @@ password = form.getvalue('password')
 city = form.getvalue('city')
 statecode = form.getvalue('statecode')
 
-print "<h2>Hello %s</h2> your from %s<br>" % (name, city)
 
-cur = db.cursor()
 insrt = db.cursor()
 insrt.execute("INSERT INTO clients (name,email,password,city,statecode) VALUES (\"%s\",\"%s\",\"%s\",\"%s\",\"%s\")" % (name, email, password, city, statecode)) 
 
