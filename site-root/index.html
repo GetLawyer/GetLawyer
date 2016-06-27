@@ -54,9 +54,11 @@
             <p>We've got you covered. Tell us the flavour of law you need help with and we'll find you an attorney. <br>
                 Or try our <b><a href="search">advanced search</a></b>.</p>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Try 'property law' or 'medical bills'">
+                <form name="search" method="POST" action="/cgi-bin/Search.py">
+                <input type="text" class="form-control" name="areas" id="areas" placeholder="Try 'property law' or 'medical bills'">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
+                    <!--<button class="btn btn-default" type="button">Go!</button>-->
+                    <input type="submit" class="btn btn-default" id="submit" value="Search">
                 </span>
             </div>
         </div>

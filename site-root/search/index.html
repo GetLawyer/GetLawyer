@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/core.css">
-    
+
     <style>
         .btn-double {
             height: 68px;
@@ -57,18 +57,18 @@
             </div><!--/.navbar-collapse -->
         </div>
     </nav>
-    
+
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
             <h2>Advanced Search</h2>
             <p>Our advanced search allows you to pinpoint the attorney you need. Search by state, city, or even both!</p>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Houston">
-                <input type="text" class="form-control form-input-second" placeholder="TX">
-                <span class="input-group-btn">
-                    <button class="btn btn-default btn-double" type="button">Search</button>
-                </span>
+                <form name="advanced-search" method="POST" action="/cgi-bin/AdvSearch.py">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Houston" style="float: left;">
+                    <input type="text" class="form-control form-input-second" id="statecode" name="statecode" placeholder="TX" style="float: left;">
+                    <input type="submit" class="btn btn-default btn-double" id="submit" value="Search">
+                </form>
             </div>
         </div>
     </div>
