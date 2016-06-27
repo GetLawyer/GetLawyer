@@ -4,9 +4,22 @@ A user-friendly attorney search engine.
 
 Powered by Bootstrap, SQL, and other aging technologies.
 
+#### Required Information
+
+This repository contains a full website as well as database setup scripts and other miscellany. A brief guide:
+
+- `/docs` Documentation makefiles and output
+- `/mySQL` Database setup scripts
+- `/site-root` Website root
+- `/tests` Unit tests in Python
+
+For building docs and building/running website, see below.
+
 #### Build/Install instructions
 
 **Database/Website setup**
+
+(Assumes you already have the standard CSCI3308 packages installed.)
 
 Navigate to the `mySQL` directory and start MySQL:
 
