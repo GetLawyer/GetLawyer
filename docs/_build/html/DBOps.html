@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DBOps &mdash; GetLawyer 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="GetLawyer 0.1 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to GetLawyer’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dbops">
+<h1>DBOps<a class="headerlink" href="#dbops" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-DBOps"></span><p>This module provides a set of standardized database operations for GetLawyer web pages. These are called by other routines in order to populate dynamic pages or register users.</p>
+<dl class="function">
+<dt id="DBOps.regClient">
+<code class="descclassname">DBOps.</code><code class="descname">regClient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#regClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.regClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns nothing</p>
+<p>Retrieve client registration data input via CGI fields, then add this data in the MySQL database as a new client entry.</p>
+<p><strong>Notes</strong>:
+At present, this function does not validate or sanitize inputs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DBOps.regLawyer">
+<code class="descclassname">DBOps.</code><code class="descname">regLawyer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#regLawyer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.regLawyer" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns nothing</p>
+<p>Retrieve attorney registration data input via CGI fields, then add this data in the MySQL database as a new lawyer entry.</p>
+<p><strong>Notes</strong>:
+At present, this function does not validate or sanitize inputs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DBOps.searchAdvanced">
+<code class="descclassname">DBOps.</code><code class="descname">searchAdvanced</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#searchAdvanced"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.searchAdvanced" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a list of tuples or an empty list</p>
+<p>Find all attorneys matching the search criteria and return as a list of tuples. If there are no records returned, returns an empty list</p>
+<p><strong>Notes</strong>:
+At present, this function does not validate or sanitize inputs.
+For development/testing purposes, this function only checks the statecode right now</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="DBOps.searchStandard">
+<code class="descclassname">DBOps.</code><code class="descname">searchStandard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DBOps.html#searchStandard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DBOps.searchStandard" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a list of tuples or an empty list</p>
+<p>Find all attorneys matching the search criteria and return as a list of tuples. If there are no records returned, returns an empty list</p>
+<p><strong>Notes</strong>:
+At present, this function does not validate or sanitize inputs.
+Note that the &#8220;LIKE&#8221; operator in MySQL may not be the appropriate method of accomplishing a keyword search.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to GetLawyer&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/DBOps.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Nathan Pottorff, Kevin Raschke, Akira Youngblood, Yanyu Xiong.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/DBOps.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

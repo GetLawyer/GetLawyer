@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DBOps &mdash; GetLawyer 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="GetLawyer 0.1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for DBOps</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This module provides a set of standardized database operations for GetLawyer web pages. These are called by other routines in order to populate dynamic pages or register users.&quot;&quot;&quot;</span>
+
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;reStructuredText&#39;</span>
+
+<span class="c1"># Import modules for communicating with MySQL database and managing CGI server calls</span>
+<span class="kn">import</span> <span class="nn">MySQLdb</span><span class="o">,</span> <span class="nn">cgi</span><span class="o">,</span> <span class="nn">cgitb</span>
+
+<span class="c1"># Get a handle to our database (@TODO remove password for production)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">MySQLdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span> <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s2">&quot;GetLawyer&quot;</span><span class="p">)</span>
+<span class="c1"># Log CGI error handling</span>
+<span class="n">cgitb</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">logdir</span><span class="o">=</span><span class="s2">&quot;cgilog.txt&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="searchStandard"><a class="viewcode-back" href="../DBOps.html#DBOps.searchStandard">[docs]</a><span class="k">def</span> <span class="nf">searchStandard</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;returns a list of tuples or an empty list</span>
+
+<span class="sd">    Find all attorneys matching the search criteria and return as a list of tuples. If there are no records returned, returns an empty list</span>
+
+<span class="sd">    **Notes**:</span>
+<span class="sd">    At present, this function does not validate or sanitize inputs.</span>
+<span class="sd">    Note that the &quot;LIKE&quot; operator in MySQL may not be the appropriate method of accomplishing a keyword search.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">cgi</span><span class="o">.</span><span class="n">FieldStorage</span><span class="p">()</span>
+    <span class="n">areas</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;areas&#39;</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM lawyers WHERE areas LIKE &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;%&quot;</span> <span class="o">+</span> <span class="n">areas</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="searchAdvanced"><a class="viewcode-back" href="../DBOps.html#DBOps.searchAdvanced">[docs]</a><span class="k">def</span> <span class="nf">searchAdvanced</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;returns a list of tuples or an empty list</span>
+
+<span class="sd">    Find all attorneys matching the search criteria and return as a list of tuples. If there are no records returned, returns an empty list</span>
+
+<span class="sd">    **Notes**:</span>
+<span class="sd">    At present, this function does not validate or sanitize inputs.</span>
+<span class="sd">    For development/testing purposes, this function only checks the statecode right now</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">cgi</span><span class="o">.</span><span class="n">FieldStorage</span><span class="p">()</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;statecode&#39;</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;@TODO: change to index both state and city&quot;&quot;&quot;</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM lawyers WHERE statecode = &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">state</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="regClient"><a class="viewcode-back" href="../DBOps.html#DBOps.regClient">[docs]</a><span class="k">def</span> <span class="nf">regClient</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;returns nothing</span>
+
+<span class="sd">    Retrieve client registration data input via CGI fields, then add this data in the MySQL database as a new client entry.</span>
+
+<span class="sd">    **Notes**:</span>
+<span class="sd">    At present, this function does not validate or sanitize inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">cgi</span><span class="o">.</span><span class="n">FieldStorage</span><span class="p">()</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+    <span class="n">statecode</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;statecode&#39;</span><span class="p">)</span>
+
+    <span class="n">insert</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">insert</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO clients (name,email,password,city,statecode) VALUES (</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">statecode</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="regLawyer"><a class="viewcode-back" href="../DBOps.html#DBOps.regLawyer">[docs]</a><span class="k">def</span> <span class="nf">regLawyer</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;returns nothing</span>
+
+<span class="sd">    Retrieve attorney registration data input via CGI fields, then add this data in the MySQL database as a new lawyer entry.</span>
+
+<span class="sd">    **Notes**:</span>
+<span class="sd">    At present, this function does not validate or sanitize inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">cgi</span><span class="o">.</span><span class="n">FieldStorage</span><span class="p">()</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+    <span class="n">organization</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;organization&#39;</span><span class="p">)</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span>
+    <span class="n">telephone</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;telephone&#39;</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
+    <span class="n">areas</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;areas&#39;</span><span class="p">)</span>
+    <span class="n">bio</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;bio&#39;</span><span class="p">)</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+    <span class="n">statecode</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;statecode&#39;</span><span class="p">)</span>
+    <span class="n">license</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;license&#39;</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO lawyers (name,organization,address,telephone,email,areas,bio,city,statecode,license,password) VALUES (</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">organization</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">telephone</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">areas</span><span class="p">,</span> <span class="n">bio</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">statecode</span><span class="p">,</span> <span class="n">license</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Nathan Pottorff, Kevin Raschke, Akira Youngblood, Yanyu Xiong.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
