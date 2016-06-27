@@ -8,8 +8,7 @@ print "Content-type: text/html"
 print
 print '''
 <html>
-<title>New User</title>
-<p> Hello World</p>
+<title>Advanced Search</title>
 <body>
 '''
 
@@ -19,12 +18,23 @@ state = form.getvalue('statecode')
 
 cur = db.cursor()
 
+cur.execute("SELECT * FROM lawyers WHERE statecode = '%s'" % (state))
 
-#case 1: only city
-if city != 'NONE' and state = 'NONE':
-	cur.execute(	
-#case 2: only city
-else if city = 'NONE' and state != 'NONE':
-	cur.execute(
-#case 3: both
-else if city != 'NONE' and state != 'NONE':
+print "<br>"
+for row in cur.fetchall():
+	print row[1]
+	print row[2]
+	print "<br>"
+	print row[3]
+	print "<br>"
+	print row[5]
+	print row[4]
+	print "<br>"
+	print row[6]
+	print "<br>"
+	print row[10]
+	print "<br>"
+	print"<br>"
+print "</body>"
+print "</html>"
+
