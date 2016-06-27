@@ -1,95 +1,122 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:100);
 .border-radius {
-  border-radius: 5px;
+    border-radius: 5px;
 }
+
 body {
-  background: url(https://newevolutiondesigns.com/images/freebies/los-angeles-beach.jpg) no-repeat fixed;
-  background-size: cover;
-  background-position: 50%;
-  font-family: 'Roboto';
-  color: #fff;
+    background: url(https://newevolutiondesigns.com/images/freebies/los-angeles-beach.jpg) no-repeat fixed;
+    background-size: cover;
+    background-position: 50%;
+    font-family: 'Roboto';
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+.jumbotron {
+    background-color: #000;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 26px;
+}
+.navbar {
+    padding-bottom: 18px;
+}
+
+div.col-md-4 {
+    background-color: rgba(0,0,0,0.5);
+    height: 14em;
+}
+
 .tabs,
 .form {
-  width: 500px;
-  opacity: 0.8;
-  border-radius: 5px;
+    width: 500px;
+    opacity: 0.8;
+    border-radius: 5px;
 }
+.input-group .form-control {
+    padding-top: 5px;
+}
+
 .tabs {
-  background: #1ab188;
-  height: 60px;
-  margin: 25px auto 10px;
-  color: #000;
+    background: #1ab188;
+    height: 60px;
+    margin: 25px auto 10px;
+    color: #000;
 }
+
 .form {
-  height: 680px;
-  margin: 25px auto;
-  background: #000;
+    height: 680px;
+    margin: 25px auto;
+    background: #000;
 }
+
 li {
-  display: block;
-  width: 40%;
-  height: 30px;
-  vertical-align: middle;
-  float: left;
-  margin: 15px;
-  padding: 0;
-  border-right: 1px solid #fff;
+    display: block;
+    width: 40%;
+    height: 30px;
+    vertical-align: middle;
+    float: left;
+    margin: 15px;
+    padding: 0;
+    border-right: 1px solid #fff;
 }
+
 li:last-child {
-  border: none;
+    border: none;
 }
+
 li a {
-  text-decoration: none;
-  padding: 10px 20px;
-  color: #fff;
-  font-size: 18px;
+    text-decoration: none;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 18px;
 }
+
 li a:hover {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
+
 li a:active {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
+
 li a:link {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
+
 .container {
-  margin-top: 20px;
+    margin-top: 20px;
 }
+
 .input {
-  margin: 20px 0;
+    margin: 20px 0;
 }
+
 input.form-control {
-  border: 1px solid #a0b3b0;
-  display: block;
-  width: 100%;
-  height: 40px;
-  color: #fff;
-  background: #000;
-  font-size: 16px;
-}
-input.form-contro-1 {
-  border: 1px solid #a0b3b0;
-  display: block;
-  width: 100%;
-  height: 40px;
-  color: #fff;
-  background: #000;
-  font-size: 16px;
+    border: 1px solid #a0b3b0;
+    display: block;
+    width: 100%;
+    height: 34px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
 }
 
 input[type="checkbox"] {
-  margin-right: 5px;
-  vertical-align: top;
+    margin-right: 5px;
+    vertical-align: top;
 }
+
 .input a {
-  color: #fff;
+    color: #fff;
 }
+
 .form input.btn {
-  background: #1ab188;
-  border: none;
+    background: #1ab188;
+    border: none;
 }

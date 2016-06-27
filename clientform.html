@@ -1,26 +1,90 @@
 <html>
 <head>
-  <title>Client Form</title>
+    <title>Client Registration</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script>
+        // make sure the user has filled in all the fields before submitting
+        function fillCheck() {
+            if ($('#name').val().length > 0 &&
+                $('#email').val().length > 0 &&
+                $('#password').val().length > 0 &&
+                $('#city').val().length > 0 &&
+                $('#statecode').val().length == 2 && // statecode should always be 2 chars
+                $('#password').val() == $('#password-confirm').val()) {
+                    $('#submit').prop('disabled', false);
+                } else {
+                    $('#submit').prop('disabled', true);
+                }
+        }
+        // make sure the user's passwords match
+        function passwordCheck() {
+            var pwA = $('#password').val();
+            var pwB = $('#password-confirm').val();
+            if (pwA != pwB) {
+                $('#password-check').text('Passwords do not match');
+            } else {
+                // no matter what the user does, it's probably a bad password. Warn them.
+                $('#password-check').text('Please consider using a stronger password');
+            }
+        }
+        $(document).ready(function() {
+            $('#name').on('input',function() {
+                fillCheck();
+            });
+            $('#email').on('input',function() {
+                fillCheck();
+            });
+            $('#password').on('input',function() {
+                passwordCheck();
+                fillCheck();
+            });
+            $('#password-confirm').on('input',function() {
+                passwordCheck();
+                fillCheck();
+            });
+            $('#city').on('input',function() {
+                fillCheck();
+            });
+            $('#statecode').on('input',function() {
+                fillCheck();
+            });
+            // disable the button until all fields are filled out
+            $('#submit').prop('disabled', true);
+        });
+    </script>
 </head>
 <body>
-<h2>Client Form</h2>
-<form name="myform" method="POST" action="cgi-bin/clientForm.py">
-<b>Enter Name (Last, First):</b><br>
-<input type="text" id="name" name="name"><br>
-<b>Enter E-Mail Address:</b><br>
-<input type="text" id="email" name="email"><br>
-<b>Enter Password:</b><br>
-<input type="text" id="password" name="password"><br>
-<b>Enter City:</b><br>
-<input type="text" id="city" name="city"><br>
-<b>Enter Statecode:</b><br>
-<input type="text" id="statecode" name="statecode"><br>
-<input type="submit">
-</form>
-
+    <h2>Create a Client Account</h2>
+    <form name="client-registration-form" method="POST" action="cgi-bin/clientForm.py">
+        <b>Name (Last, First):</b>
+        <br>
+        <input type="text" id="name" name="name" placeholder="Baggins, Frodo">
+        <br>
+        <b>Email:</b>
+        <br>
+        <input type="text" id="email" name="email" placeholder="frodo@shire.co.nz">
+        <br>
+        <b>Password:</b>
+        <br>
+        <input type="password" id="password" name="password" placeholder="">
+        <br>
+        <b>Retype password:</b>
+        <br>
+        <input type="password" id="password-confirm" name="password-confirm" placeholder="">
+        <br>
+        <p id="password-check"></p>
+        <br>
+        <b>City:</b>
+        <br>
+        <input type="text" id="city" name="city" placeholder="Bag End">
+        <br>
+        <b>Enter Statecode:</b>
+        <br>
+        <input type="text" id="statecode" name="statecode" placeholder="WF">
+        <br><br>
+        <input type="submit" id="submit" value="Register">
+    </form>
 
 </body>
 </html>
-
-
-
