@@ -12,7 +12,7 @@ print '''
 <title>New Lawyer</title>
 </head>
 <body>
-Hello World
+Success!
 <br>
 </body>
 </html>
