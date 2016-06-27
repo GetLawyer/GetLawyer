@@ -1,0 +1,17 @@
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter D
+  \item DBOps (module), \hyperpage{3}
+
+  \indexspace
+  \bigletter R
+  \item regClient() (in module DBOps), \hyperpage{3}
+  \item regLawyer() (in module DBOps), \hyperpage{3}
+
+  \indexspace
+  \bigletter S
+  \item searchAdvanced() (in module DBOps), \hyperpage{3}
+  \item searchStandard() (in module DBOps), \hyperpage{3}
+
+\end{theindex}
